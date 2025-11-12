@@ -1,6 +1,6 @@
-Select firstName , lastName, city, state
-from Person
-left join Address on Person.personId = Address.personId
+Select a.firstName , a.lastName, b.city, b.state
+from Person a
+left join Address b on a.personId = b.personId
 
 -- Example 1:
 
@@ -25,4 +25,5 @@ left join Address on Person.personId = Address.personId
 -- +-----------+----------+---------------+----------+
 -- | Allen     | Wang     | Null          | Null     |
 -- | Bob       | Alice    | New York City | New York |
+
 -- +-----------+----------+---------------+----------+
