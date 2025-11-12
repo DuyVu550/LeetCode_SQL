@@ -1,9 +1,13 @@
-Select COALESCE(
-    (Select salary as SecondHighestSalary 
-     from Employee 
-     order by salary ASC
-     limit 1,1), null
-) as 'SecondHighestSalary' 
+with temp_table as(
+    Select *, dense_rank() over (order by salary desc) as second_salary
+    from Employee
+    )
+Select coalesce(
+    ( select salary 
+      from temp_table 
+      where second_salary = 2
+      limit 1), null
+)  as SecondHighestSalary
 
 -- Example 1:
 
@@ -36,4 +40,5 @@ Select COALESCE(
 -- | SecondHighestSalary |
 -- +---------------------+
 -- | null                |
+
 -- +---------------------+
