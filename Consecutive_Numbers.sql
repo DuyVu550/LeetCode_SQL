@@ -1,11 +1,11 @@
 # Write your MySQL query statement below
 with temp_table as (
-        select *, 
+        select *,
         Lead(num, 1) over(order by id) as next1,
         Lead(num, 2) over(order by id) as next2
         from Logs 
 ) 
-select num as 'ConsecutiveNums' 
+select distinct num as 'ConsecutiveNums' 
 from temp_table
 where num = next1 and num = next2
 
@@ -27,4 +27,5 @@ where num = next1 and num = next2
 -- +-----------------+
 -- | 1               |
 -- +-----------------+
+
 -- Explanation: 1 is the only number that appears consecutively for at least three times.
