@@ -3,10 +3,10 @@ with temp_table as(
     from Employee
     )
 Select coalesce(
-    ( select salary 
+    ( select distinct salary 
       from temp_table 
       where second_salary = 2
-      limit 1), null
+      ), null
 )  as SecondHighestSalary
 
 -- Example 1:
@@ -42,3 +42,4 @@ Select coalesce(
 -- | null                |
 
 -- +---------------------+
+
